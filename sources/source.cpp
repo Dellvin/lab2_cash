@@ -49,7 +49,7 @@ public:
         }
         size_t end_time = clock();
         std::cout << "         duration: "
-        << end_time - start_time << std::endl;
+                  << end_time - start_time << std::endl;
     }
 
     void converseType() {
@@ -61,7 +61,7 @@ public:
         }
         size_t end_time = clock();
         std::cout << "         converse: "
-        << end_time - start_time << std::endl;
+                  << end_time - start_time << std::endl;
     }
 
     void randomType() {
@@ -73,7 +73,7 @@ public:
         size_t start_time = clock();
         for (int64_t j = 0; j < 1000; j++) {
             for (int64_t i = 0; i < sizeCash; i++) {
-                myCash[randomNumbers.at(i)] = rand(256);
+                myCash[randomNumbers.at(i)] = rand_r(256);
             }
         }
         size_t end_time = clock();
@@ -109,7 +109,7 @@ void showResult() {
               << " travel_variant:<direction>" << std::endl
               << " experiments" << std::endl;
 
-    for (unsigned long long i = 0; i < cashes.size(); i++) {
+    for (uint64_t i = 0; i < cashes.size(); i++) {
         std::cout << "  - experiment:" << std::endl;
         std::cout << "      number:" << i + 1 << std::endl
                   << "      input_data:" << std::endl
@@ -120,12 +120,11 @@ void showResult() {
         CashHit exp(cashes[i]);
         exp.directionType();
         exp.clearMemory();
-
     }
     std::cout << "investigation:" << std::endl
               << " travel_variant:<converse>" << std::endl
               << " experiments" << std::endl;
-    for (unsigned long long  i = 0; i < cashes.size(); i++) {
+    for (uint64_t  i = 0; i < cashes.size(); i++) {
         std::cout << "  - experiment:" << std::endl;
         std::cout << "      number:" << i + 1 << std::endl
                   << "      input_data:" << std::endl
@@ -141,7 +140,7 @@ void showResult() {
               << " travel_variant:<random>" << std::endl
               << " experiments" << std::endl;
 
-    for (unsigned long long  i = 0; i < cashes.size(); i++) {
+    for (uint64_t  i = 0; i < cashes.size(); i++) {
         std::cout << "  - experiment:" << std::endl;
         std::cout << "      number:" << i + 1 << std::endl
                   << "      input_data:" << std::endl
