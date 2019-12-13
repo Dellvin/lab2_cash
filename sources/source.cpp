@@ -11,6 +11,7 @@
 
 using std::mt19937;
 using std::vector;
+using std::rand_r;
 
 
 
@@ -57,7 +58,7 @@ public:
         size_t start_time = clock();
         for (int64_t i = 0; i < 1000; i++) {
             for (int64_t j = sizeCash - 1; j != 0; j--) {
-                myCash[j] = rand(256);
+                myCash[j] = rand_r(256);
             }
         }
         size_t end_time = clock();
