@@ -1,4 +1,4 @@
-// Copyright 2019 Ogrebatel <your_email>
+// Copyright 2019 Dellvin <your_email>
 
 #include <header.hpp>
 
