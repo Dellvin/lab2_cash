@@ -1,3 +1,4 @@
+// Copyright 2018 Dellvin <dellvin.black@gmail.com>
 #include <iostream>
 #include <ctime>
 #include <vector>
