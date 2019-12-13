@@ -19,7 +19,7 @@ const int L3 = 6144;
 
 class CashHit {
 public:
-    CashHit(size_t size) {
+    explicit CashHit(size_t size) {
         sizeCash = size * 1024;
         myCash = new char[sizeCash];
         hitIT();
@@ -44,27 +44,27 @@ public:
         size_t start_time = clock();
         for (int64_t i = 0; i < 1000; i++) {
             for (int64_t j = 0; j < sizeCash; j++) {
-
-                myCash[j] = rand() % 256;
+                myCash[j] = rand_r(256);
             }
         }
         size_t end_time = clock();
-        std::cout << "         duration: " << end_time - start_time << std::endl;
+        std::cout << "         duration: "
+        << end_time - start_time << std::endl;
     }
 
     void converseType() {
         size_t start_time = clock();
         for (int64_t i = 0; i < 1000; i++) {
             for (int64_t j = sizeCash - 1; j != 0; j--) {
-                myCash[j] = rand() % 256;
+                myCash[j] = rand(256);
             }
         }
         size_t end_time = clock();
-        std::cout << "         converse: " << end_time - start_time << std::endl;
+        std::cout << "         converse: "
+        << end_time - start_time << std::endl;
     }
 
     void randomType() {
-
         vector <size_t> randomNumbers;
         for (int64_t i = 0; i < sizeCash; i++) {
             randomNumbers.push_back(i);
@@ -73,7 +73,7 @@ public:
         size_t start_time = clock();
         for (int64_t j = 0; j < 1000; j++) {
             for (int64_t i = 0; i < sizeCash; i++) {
-                myCash[randomNumbers.at(i)] = rand() % 256;
+                myCash[randomNumbers.at(i)] = rand(256);
             }
         }
         size_t end_time = clock();
@@ -98,12 +98,10 @@ void getExpirimentsCount(vector <size_t> *exp) {
         n++;
     }
     exp->push_back(1.5 * L3);
-
 }
 
 
 void showResult() {
-
     vector <size_t> cashes;
     getExpirimentsCount(&cashes);
     clock();
@@ -115,7 +113,8 @@ void showResult() {
         std::cout << "  - experiment:" << std::endl;
         std::cout << "      number:" << i + 1 << std::endl
                   << "      input_data:" << std::endl
-                  << "          buffer_size: <" << cashes[i] << "kb>" << std::endl
+                  << "          buffer_size: <"
+                  << cashes[i] << "kb>" << std::endl
                   << "      results:" << std::endl;
 
         CashHit exp(cashes[i]);
@@ -130,7 +129,8 @@ void showResult() {
         std::cout << "  - experiment:" << std::endl;
         std::cout << "      number:" << i + 1 << std::endl
                   << "      input_data:" << std::endl
-                  << "          buffer_size: <" << cashes[i] << "kb>" << std::endl
+                  << "          buffer_size: <"
+                  << cashes[i] << "kb>" << std::endl
                   << "      results:" << std::endl;
         CashHit exp(cashes[i]);
         exp.converseType();
@@ -145,7 +145,8 @@ void showResult() {
         std::cout << "  - experiment:" << std::endl;
         std::cout << "      number:" << i + 1 << std::endl
                   << "      input_data:" << std::endl
-                  << "          buffer_size: <" << cashes[i] << "kb>" << std::endl
+                  << "          buffer_size: <"
+                  << cashes[i] << "kb>" << std::endl
                   << "      results:" << std::endl;
 
         CashHit exp(cashes[i]);
