@@ -8,7 +8,10 @@
 #include <chrono>
 #include <string>
 
-using namespace std;
+using std::mt19937;
+using std::vector;
+
+
 
 
 const int L1 = 256;
@@ -28,7 +31,7 @@ public:
 
 
     void hitIT() {
-        random_device rd;
+        std::random_device rd;
         mt19937 mersenne(rd());
         for (int64_t i = 0; i < sizeCash; i++) {
             //srand(time(0));
@@ -46,7 +49,7 @@ public:
             }
         }
         size_t end_time = clock();
-        cout << "         duration: " << end_time - start_time << endl;
+        std::cout << "         duration: " << end_time - start_time << std::endl;
     }
 
     void converseType() {
@@ -57,7 +60,7 @@ public:
             }
         }
         size_t end_time = clock();
-        cout << "         converse: " << end_time - start_time << endl;
+        std::cout << "         converse: " << end_time - start_time << std::endl;
     }
 
     void randomType() {
@@ -74,7 +77,7 @@ public:
             }
         }
         size_t end_time = clock();
-        cout << "         random: " << end_time - start_time << endl;
+        std::cout << "         random: " << end_time - start_time << std::endl;
     }
 
 
@@ -104,53 +107,53 @@ void showResult() {
     vector <size_t> cashes;
     getExpirimentsCount(&cashes);
     clock();
-    cout << "investigation:" << endl
-         << " travel_variant:<direction>" << endl
-         << " experiments" << endl;
+    std::cout << "investigation:" << std::endl
+              << " travel_variant:<direction>" << std::endl
+              << " experiments" << std::endl;
 
     for (unsigned long long i = 0; i < cashes.size(); i++) {
-        cout << "  - experiment:" << endl;
-        cout << "      number:" << i + 1 << endl
-             << "      input_data:" << endl
-             << "          buffer_size: <" << cashes[i] << "kb>" << endl
-             << "      results:" << endl;
+        std::cout << "  - experiment:" << std::endl;
+        std::cout << "      number:" << i + 1 << std::endl
+                  << "      input_data:" << std::endl
+                  << "          buffer_size: <" << cashes[i] << "kb>" << std::endl
+                  << "      results:" << std::endl;
 
         CashHit exp(cashes[i]);
         exp.directionType();
         exp.clearMemory();
 
     }
-    cout << "investigation:" << endl
-         << " travel_variant:<converse>" << endl
-         << " experiments" << endl;
+    std::cout << "investigation:" << std::endl
+              << " travel_variant:<converse>" << std::endl
+              << " experiments" << std::endl;
     for (unsigned long long  i = 0; i < cashes.size(); i++) {
-        cout << "  - experiment:" << endl;
-        cout << "      number:" << i + 1 << endl
-             << "      input_data:" << endl
-             << "          buffer_size: <" << cashes[i] << "kb>" << endl
-             << "      results:" << endl;
+        std::cout << "  - experiment:" << std::endl;
+        std::cout << "      number:" << i + 1 << std::endl
+                  << "      input_data:" << std::endl
+                  << "          buffer_size: <" << cashes[i] << "kb>" << std::endl
+                  << "      results:" << std::endl;
         CashHit exp(cashes[i]);
         exp.converseType();
         exp.clearMemory();
     }
 
-    cout << "investigation:" << endl
-         << " travel_variant:<random>" << endl
-         << " experiments" << endl;
+    std::cout << "investigation:" << std::endl
+              << " travel_variant:<random>" << std::endl
+              << " experiments" << std::endl;
 
     for (unsigned long long  i = 0; i < cashes.size(); i++) {
-        cout << "  - experiment:" << endl;
-        cout << "      number:" << i + 1 << endl
-             << "      input_data:" << endl
-             << "          buffer_size: <" << cashes[i] << "kb>" << endl
-             << "      results:" << endl;
+        std::cout << "  - experiment:" << std::endl;
+        std::cout << "      number:" << i + 1 << std::endl
+                  << "      input_data:" << std::endl
+                  << "          buffer_size: <" << cashes[i] << "kb>" << std::endl
+                  << "      results:" << std::endl;
 
         CashHit exp(cashes[i]);
         exp.randomType();
         exp.clearMemory();
     }
     clock();
-    cout << "ТОТАЛ ТАЙМ - " << clock() << endl;
+    std::cout << "ТОТАЛ ТАЙМ - " << clock() << std::endl;
 }
 
 
