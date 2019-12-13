@@ -4,7 +4,7 @@
 #include <random>
 
 using namespace std;
-using std::shufle;
+using std::shuffle;
 
 const int L1 = 256;
 const int L3 = 6144;
@@ -103,7 +103,7 @@ void showResult() {
          << " travel_variant:<direction>" << endl
          << " experiments" << endl;
 
-    for (int64_t i = 0; i < cashes.size(); i++) {
+    for (unsigned int64_t i = 0; i < cashes.size(); i++) {
         cout << "  - experiment:" << endl;
         cout << "      number:" << i + 1 << endl
              << "      input_data:" << endl
@@ -118,7 +118,7 @@ void showResult() {
     cout << "investigation:" << endl
          << " travel_variant:<converse>" << endl
          << " experiments" << endl;
-    for (int64_t i = 0; i < cashes.size(); i++) {
+    for (unsigned int64_t i = 0; i < cashes.size(); i++) {
         cout << "  - experiment:" << endl;
         cout << "      number:" << i + 1 << endl
              << "      input_data:" << endl
@@ -133,7 +133,7 @@ void showResult() {
          << " travel_variant:<random>" << endl
          << " experiments" << endl;
 
-    for (int64_t i = 0; i < cashes.size(); i++) {
+    for (unsigned int64_t i = 0; i < cashes.size(); i++) {
         cout << "  - experiment:" << endl;
         cout << "      number:" << i + 1 << endl
              << "      input_data:" << endl
