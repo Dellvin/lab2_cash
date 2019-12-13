@@ -4,6 +4,7 @@
 #include <random>
 
 using namespace std;
+using std::shufle;
 
 const int L1 = 256;
 const int L3 = 6144;
@@ -60,7 +61,6 @@ public:
         for (int64_t i = 0; i < sizeCash; i++) {
             randomNumbers.push_back(i);
         }
-        unsigned seed = 0;
         shuffle(randomNumbers.begin(), randomNumbers.end(), default_random_engine(0));
         size_t start_time = clock();
         for (int64_t j = 0; j < 1000; j++) {
@@ -103,7 +103,7 @@ void showResult() {
          << " travel_variant:<direction>" << endl
          << " experiments" << endl;
 
-    for (int i = 0; i < cashes.size(); i++) {
+    for (int64_t i = 0; i < cashes.size(); i++) {
         cout << "  - experiment:" << endl;
         cout << "      number:" << i + 1 << endl
              << "      input_data:" << endl
@@ -118,7 +118,7 @@ void showResult() {
     cout << "investigation:" << endl
          << " travel_variant:<converse>" << endl
          << " experiments" << endl;
-    for (int i = 0; i < cashes.size(); i++) {
+    for (int64_t i = 0; i < cashes.size(); i++) {
         cout << "  - experiment:" << endl;
         cout << "      number:" << i + 1 << endl
              << "      input_data:" << endl
@@ -133,7 +133,7 @@ void showResult() {
          << " travel_variant:<random>" << endl
          << " experiments" << endl;
 
-    for (int i = 0; i < cashes.size(); i++) {
+    for (int64_t i = 0; i < cashes.size(); i++) {
         cout << "  - experiment:" << endl;
         cout << "      number:" << i + 1 << endl
              << "      input_data:" << endl
