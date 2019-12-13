@@ -2,9 +2,14 @@
 #include <ctime>
 #include <vector>
 #include <random>
+#include <map>
+#include <cmath>
+#include <algorithm>
+#include <chrono>
+#include <string>
 
 using namespace std;
-using std::shuffle;
+
 
 const int L1 = 256;
 const int L3 = 6144;
@@ -61,7 +66,7 @@ public:
         for (int64_t i = 0; i < sizeCash; i++) {
             randomNumbers.push_back(i);
         }
-        shuffle(randomNumbers.begin(), randomNumbers.end(), default_random_engine(0));
+        random_shuffle(randomNumbers.begin(), randomNumbers.end());
         size_t start_time = clock();
         for (int64_t j = 0; j < 1000; j++) {
             for (int64_t i = 0; i < sizeCash; i++) {
