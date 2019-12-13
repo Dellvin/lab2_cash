@@ -2,149 +2,150 @@
 #include <ctime>
 #include <vector>
 #include <random>
+
 using namespace std;
 
-const int L1=256;
-const int L3=6144;
+const int L1 = 256;
+const int L3 = 6144;
 
-class CashHit{
+class CashHit {
 public:
-    CashHit(size_t size){
-        sizeCash=size*1024;
-        myCash=new char[sizeCash];
+    CashHit(size_t size) {
+        sizeCash = size * 1024;
+        myCash = new char[sizeCash];
         hitIT();
     }
 
-    void clearMemory(){
-        delete(myCash);
+    void clearMemory() {
+        delete (myCash);
     }
 
 
-    void hitIT(){
+    void hitIT() {
         random_device rd;
         mt19937 mersenne(rd());
-        for(size_t i=0;i<sizeCash;i++){
+        for (int64_t i = 0; i < sizeCash; i++) {
             //srand(time(0));
-            myCash[i]=0;
+            myCash[i] = 0;
             //cout<<myCash[i]<<" ";
         }
     }
 
-    void directionType(){
-        size_t start_time =  clock();
-        for(size_t i=0; i<1000;i++){
-            for(size_t j=0;j<sizeCash;j++){
+    void directionType() {
+        size_t start_time = clock();
+        for (int64_t i = 0; i < 1000; i++) {
+            for (int64_t j = 0; j < sizeCash; j++) {
 
-                myCash[j]=rand()%256;
+                myCash[j] = rand() % 256;
             }
         }
         size_t end_time = clock();
-        cout<<"         duration: "<<end_time-start_time<<endl;
+        cout << "         duration: " << end_time - start_time << endl;
     }
 
-    void converseType(){
-        size_t start_time =  clock();
-        for(size_t i=0; i<1000;i++){
-            for(size_t j=sizeCash-1;j!=0;j--){
-                myCash[j]=rand()%256;
+    void converseType() {
+        size_t start_time = clock();
+        for (int64_t i = 0; i < 1000; i++) {
+            for (int64_t j = sizeCash - 1; j != 0; j--) {
+                myCash[j] = rand() % 256;
             }
         }
         size_t end_time = clock();
-        cout<<"         converse: "<<end_time-start_time<<endl;
+        cout << "         converse: " << end_time - start_time << endl;
     }
 
-    void randomType(){
+    void randomType() {
 
-        vector<size_t> randomNumbers;
-        for(int i=0;i<sizeCash;i++){
+        vector <size_t> randomNumbers;
+        for (int64_t i = 0; i < sizeCash; i++) {
             randomNumbers.push_back(i);
         }
-        unsigned seed=0;
-        shuffle(randomNumbers.begin(), randomNumbers.end(),default_random_engine(0));
-        size_t start_time =  clock();
-        for(int j=0;j<1000;j++){
-            for(int i=0;i<sizeCash;i++){
-                myCash[randomNumbers.at(i)]= rand() % 256;
+        unsigned seed = 0;
+        shuffle(randomNumbers.begin(), randomNumbers.end(), default_random_engine(0));
+        size_t start_time = clock();
+        for (int64_t j = 0; j < 1000; j++) {
+            for (int64_t i = 0; i < sizeCash; i++) {
+                myCash[randomNumbers.at(i)] = rand() % 256;
             }
         }
         size_t end_time = clock();
-        cout<<"         random: "<<end_time-start_time<<endl;
+        cout << "         random: " << end_time - start_time << endl;
     }
 
 
-
-    char* myCash;
-    size_t sizeCash;
+    char *myCash;
+    int64_t sizeCash;
 };
-void getExpirimentsCount(vector<size_t> *exp){
+
+void getExpirimentsCount(vector <size_t> *exp) {
     int n = 1;
-    int k=L1;
-    while(k/2!=1) {
+    int k = L1;
+    while (k / 2 != 1) {
         n++;
         k /= 2;
     }
     exp->push_back(L1 / 2);
-    while(pow(2, n)<1.5*L3){
+    while (pow(2, n) < 1.5 * L3) {
         exp->push_back(pow(2, n));
         n++;
     }
-    exp->push_back(1.5*L3);
+    exp->push_back(1.5 * L3);
 
 }
 
 
-void showResult(){
+void showResult() {
 
-    vector<size_t>cashes;
+    vector <size_t> cashes;
     getExpirimentsCount(&cashes);
     clock();
-    cout<<"investigation:"<<endl
-        <<" travel_variant:<direction>"<<endl
-        <<" experiments"<<endl;
+    cout << "investigation:" << endl
+         << " travel_variant:<direction>" << endl
+         << " experiments" << endl;
 
-    for(int i=0;i<cashes.size();i++){
-        cout<<"  - experiment:"<<endl;
-        cout<<"      number:"<<i+1<<endl
-            <<"      input_data:"<<endl
-            <<"          buffer_size: <"<<cashes[i]<<"kb>"<<endl
-            <<"      results:"<<endl;
+    for (int i = 0; i < cashes.size(); i++) {
+        cout << "  - experiment:" << endl;
+        cout << "      number:" << i + 1 << endl
+             << "      input_data:" << endl
+             << "          buffer_size: <" << cashes[i] << "kb>" << endl
+             << "      results:" << endl;
 
         CashHit exp(cashes[i]);
         exp.directionType();
         exp.clearMemory();
 
     }
-    cout<<"investigation:"<<endl
-        <<" travel_variant:<converse>"<<endl
-        <<" experiments"<<endl;
-    for(int i=0;i<cashes.size();i++){
-        cout<<"  - experiment:"<<endl;
-        cout<<"      number:"<<i+1<<endl
-            <<"      input_data:"<<endl
-            <<"          buffer_size: <"<<cashes[i]<<"kb>"<<endl
-            <<"      results:"<<endl;
+    cout << "investigation:" << endl
+         << " travel_variant:<converse>" << endl
+         << " experiments" << endl;
+    for (int i = 0; i < cashes.size(); i++) {
+        cout << "  - experiment:" << endl;
+        cout << "      number:" << i + 1 << endl
+             << "      input_data:" << endl
+             << "          buffer_size: <" << cashes[i] << "kb>" << endl
+             << "      results:" << endl;
         CashHit exp(cashes[i]);
         exp.converseType();
         exp.clearMemory();
     }
 
-    cout<<"investigation:"<<endl
-        <<" travel_variant:<random>"<<endl
-        <<" experiments"<<endl;
+    cout << "investigation:" << endl
+         << " travel_variant:<random>" << endl
+         << " experiments" << endl;
 
-    for(int i=0;i<cashes.size();i++){
-        cout<<"  - experiment:"<<endl;
-        cout<<"      number:"<<i+1<<endl
-            <<"      input_data:"<<endl
-            <<"          buffer_size: <"<<cashes[i]<<"kb>"<<endl
-            <<"      results:"<<endl;
+    for (int i = 0; i < cashes.size(); i++) {
+        cout << "  - experiment:" << endl;
+        cout << "      number:" << i + 1 << endl
+             << "      input_data:" << endl
+             << "          buffer_size: <" << cashes[i] << "kb>" << endl
+             << "      results:" << endl;
 
         CashHit exp(cashes[i]);
         exp.randomType();
         exp.clearMemory();
     }
     clock();
-    cout<<"ТОТАЛ ТАЙМ - "<<clock()<<endl;
+    cout << "ТОТАЛ ТАЙМ - " << clock() << endl;
 }
 
 
