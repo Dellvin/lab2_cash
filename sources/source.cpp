@@ -8,10 +8,11 @@
 #include <algorithm>
 #include <chrono>
 #include <string>
+#include <cstdlib>
 
 using std::mt19937;
 using std::vector;
-using std::rand_r;
+
 
 
 
@@ -44,9 +45,10 @@ public:
 
     void directionType() {
         size_t start_time = clock();
+        unsigned now = time(0);
         for (int64_t i = 0; i < 1000; i++) {
             for (int64_t j = 0; j < sizeCash; j++) {
-                myCash[j] = rand_r(256);
+                myCash[j] = rand_r(&now);
             }
         }
         size_t end_time = clock();
@@ -56,9 +58,10 @@ public:
 
     void converseType() {
         size_t start_time = clock();
+        unsigned now = time(0);
         for (int64_t i = 0; i < 1000; i++) {
             for (int64_t j = sizeCash - 1; j != 0; j--) {
-                myCash[j] = rand_r(256);
+                myCash[j] = rand_r(&now);
             }
         }
         size_t end_time = clock();
@@ -73,9 +76,10 @@ public:
         }
         random_shuffle(randomNumbers.begin(), randomNumbers.end());
         size_t start_time = clock();
+        unsigned now = time(0);
         for (int64_t j = 0; j < 1000; j++) {
             for (int64_t i = 0; i < sizeCash; i++) {
-                myCash[randomNumbers.at(i)] = rand_r(256);
+                myCash[randomNumbers.at(i)] = rand_r(&now);
             }
         }
         size_t end_time = clock();
